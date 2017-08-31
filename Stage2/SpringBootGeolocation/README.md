@@ -60,6 +60,28 @@ Kubernetes Setup
 8.3 You can stop the minikube cluster using the following command 
 
 	$ minikube stop
+	
+9. Understanding the Kubernetes Dashboard
+
+9.1 First find the ip of the minikube by executing the following command
+
+	$ minikube ip
+	
+9.2 Open the dashboard page by going to the following url http://<minikube_ip>:30000
+
+9.3 You can also use the simple command from terminal  to open the dashboard page
+
+	$ minikube dashboard
+	
+9.4 Spinning of EchoServer container on Kubernetes
+
+	$ kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4
+	
+9.5 Now you can see there are three sections 
+
+	. Deployments
+	. Replica Sets
+	. Pods
 
 
 	
