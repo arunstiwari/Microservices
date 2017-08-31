@@ -11,3 +11,20 @@
 	curl -X GET http://localhost:8080/geolocation
 	
 	Output should be : {"latitude":	41.803488,"longitude":-88.14404,"userId":"f1196aac-470e-11e6-beb8-9e71128cae77","timestamp":1468203975}
+	
+
+Dockerizing Service
+----
+1. Write a Dockerfile
+
+2. Build the docker image using the command
+		
+		docker build -t geolocation:1.0 .
+		
+3. See the image locally by running the command 
+
+		docker images
+		
+4. Run the container from the recently built image using the command
+
+		docker run -p 8080:8080 --name geolocation geolocation:1.0
