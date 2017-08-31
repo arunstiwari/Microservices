@@ -1,30 +1,65 @@
-1. Build it by running mvn clean package spring-boot:run
+Kubernetes Setup
+---
+1. Easiest way to create a Kubernetes cluster at scale is using Google Cloud Platform at  https://cloud.google.com/container-engine
 
-2. Test it by running following command 
+2. Building Kubernetes Cluster on our local machine using Docker
+
+3. Several options exist to run a Dockerized Kubernetes cluster like 
+
+	1. Buidling your own Docker compose file
+	2. Using kid (kid stands for Kubernetes in Docker. It is a third party script that will spin off kubernetes cluster using Docker )
+	3. Minikube
 	
-	curl -H "Content-Type: application/json" -X POST -d '{"timestamp": 1468203975, "userId": "f1196aac-470e-11e6-beb8-9e71128cae77", "latitude": 41.803488, "longitude": -88.144040}' http://localhost:8080/geolocation
+4. For local setup we will be using minikube and kubectl to orchestrate and manage our local single-node Kubernetes cluster
 
-	Output should be : {"latitude":	41.803488,"longitude":-88.14404,"userId":"f1196aac-470e-11e6-beb8-9e71128cae77","timestamp":1468203975}
-
-3. Test the GET endpoint by running following command
-
-	curl -X GET http://localhost:8080/geolocation
+	kubectl is a CLI for managing Kubernetes clusters
 	
-	Output should be : {"latitude":	41.803488,"longitude":-88.14404,"userId":"f1196aac-470e-11e6-beb8-9e71128cae77","timestamp":1468203975}
+5. Prerequisites:
+
+	1. Oracle Virtualbox should be installed on the local machine if we are using docker-machine
+	2. If we are using native docker then we might have to install the latest version of VirtualBox
 	
+6. Installing Minikube
 
-Dockerizing Service
-----
-1. Write a Dockerfile
+6.1 Open a terminal window and execute the following command
 
-2. Build the docker image using the command
+	curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.12.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+	
+		This command does three things
+		a) Download the minikube package
+		b) Add execute permission to the minikube binary file for all users
+		c) Move the minikube binary file to /usr/local/bin
+
+6.2 Verify minikube installation by executing the following command
+
+	$ minikube
 		
-		docker build -t geolocation:1.0 .
-		
-3. See the image locally by running the command 
+7. Installing Kubectl
 
-		docker images
-		
-4. Run the container from the recently built image using the command
+7.1 Open a terminal window and execute the following command
 
-		docker run -p 8080:8080 --name geolocation geolocation:1.0
+	url -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+	
+7.2 Verify kubectl installation by executing the following command
+
+	$ kubectl
+	
+8. Creating First Cluster
+8.1 Execute the following command from the terminal
+
+	$ minikube start
+
+8.2 Verfiy the minikube cluster by following the command
+
+	$ eval $(minikube docker-env)
+	
+	$ docker ps
+	
+	$ minikube status
+	
+8.3 You can stop the minikube cluster using the following command 
+
+	$ minikube stop
+
+
+	
