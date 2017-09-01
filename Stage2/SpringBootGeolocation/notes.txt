@@ -1,0 +1,4 @@
+As you can see, there is a new deployment called geolocation. It also created a pod, replication set, and replication controller. The same thing can be done using the following kubectl command:
+        kubectl create -f kube-deployment.yml
+This command-line based approach is recommended when you are performing automated deployments using continuous integration tools such as Jenkins. One thing to note in this approach is that it will not create a service for you. You have to create the service manually, either using kubectl or from the dashboard. We will look at how to create a service using kubectl in the next recipe. The choice of whether to use the dashboard or kubectl depends completely on your usage. That brings us to the end of this recipe. I hope you now have a good hold on deploying your applications on Kubernetes. In the next recipe, we will look at how to configure ports and services.
+

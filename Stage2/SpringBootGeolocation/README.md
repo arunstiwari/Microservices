@@ -78,13 +78,20 @@
 		$ kubectl create -f kube-deployment.yml
 
 ######10.2 Configuring Ports in Kubernetes
+	a) Using Minikube dashboard. Create an internal service with the source port and target port.
+		Even if with this we cannot access the application on the specified target port from the local machine. 
+		We need to do port-forwarding that forwards any request from the localhost to the pod. This can be done using the following command 
+		$ kubectl port-forward geolocation-qr86 8085:8080  (Here geolocation-qr86 is the pod name)
 
 ######10.3 Configuring Environment Variables in Kubernetes
 
 ######10.4 Scaling your microservice in Kubernetes
+	$ kubectl scale rc geolocation --replicas=2 (Here geolocation is the name of replication controller, rc stands for replication controller)
 
 ######10.5 Destroying your microservice in Kubernetes
+	$ kubectl delete rc geolocation
+	$ kubectl delete service geolocation
 
 ######10.6 Monitoring your microservice logs in Kubernetes
+	$ kubectl logs -f geolocation-f0yk2 (where geolocation-f0yk2 is the pod name)
 
-	
